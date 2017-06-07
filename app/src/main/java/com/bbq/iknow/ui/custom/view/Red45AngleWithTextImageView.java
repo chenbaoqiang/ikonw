@@ -1,7 +1,6 @@
-package com.bbq.iknow.custom.view;
+package com.bbq.iknow.ui.custom.view;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -22,7 +21,6 @@ import com.feinno.androidbase.system.SystemUtils;
  * @version 1.0
  */
 public class Red45AngleWithTextImageView extends ImageView {
-    private Bitmap bitmap;
     Path path;
     Paint paint;
     int defaultWidth;
@@ -30,7 +28,7 @@ public class Red45AngleWithTextImageView extends ImageView {
 
     Path textPath;
 
-    private String text;
+    private String text = "HOT";
 
     public Red45AngleWithTextImageView(Context context) {
         super(context);

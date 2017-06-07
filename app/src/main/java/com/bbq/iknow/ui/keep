@@ -1,0 +1,14 @@
+视图：将数据呈现给用户。一般的视图都只是包含用户界面(UI)，而不包含界面逻辑。
+比如，Asp.net中包含控件的页面(page)就是一个视图。视图可以从模型中读取数据，但是不能修改或更新模型。
+
+view 层主要负责：
+
+· 提供UI交互
+
+· 在presenter的控制下修改UI。
+
+· 将业务事件交由presenter处理。
+
+注意: View层不存储数据，不与Model层交互。
+
+在Android中View层一般是Activity、Fragment、View（控件）、ViewGroup（布局等）等。

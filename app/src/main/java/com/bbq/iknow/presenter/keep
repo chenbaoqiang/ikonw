@@ -1,0 +1,13 @@
+控制器：View捕获到用户交互操作后会直接转发给Controller，后者完成相应的UI逻辑。
+如果需要涉及业务功能的调用，Controller会直接调用Model。
+在完成UI处理之后，Controller会根据需要控制原View或者创建新的View对用户交互操作予以响应。
+
+层现器：作为View与Model交互的中间纽带，处理与用户交互的负责逻辑。
+Presenter包含了根据用户在视图中的行为去更新模型的逻辑。
+视图仅仅只是将用户的行为告知Presenter，而Presenter负责从视图中取得数据然后发送给模型。
+
+视图模型：binder 所在之处，是 View 的抽象，对外暴露出公共属性和命令，
+它是View的抽象，负责View与Model之间信息转换，将View的Command传送到Model。
+ViewModel的含义就是 "Model of View"，视图的模型。
+它的含义包含了领域模型（Domain Model）和视图的状态（State）。
+可以简单把ViewModel理解为页面上所显示内容的数据抽象，和Domain Model不一样，ViewModel更适合用来描述View。

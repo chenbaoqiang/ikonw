@@ -33,5 +33,11 @@
             android:layout_height="50dp"
             android:layout_below="@id/bt_get_activity"
             android:text="自定义View" />
+        <Button
+            android:id="@+id/bt_mvp_user"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_below="@id/bt_get_activity"
+            android:text="MVP" />
     </LinearLayout>
 </ScrollView>

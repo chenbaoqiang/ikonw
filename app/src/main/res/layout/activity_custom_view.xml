@@ -23,13 +23,16 @@
         android:layout_marginTop="10dp"
         android:text="改变大小" />
 
-    <com.bbq.iknow.custom.view.CustomCircleView
+    <com.bbq.iknow.ui.custom.view.CustomCircleView
         android:id="@+id/view_custom_cirle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_marginTop="10dp"
         custom:titleTextColor="#000000"
         custom:titleTextSize="20sp" />
 
+    <com.bbq.iknow.ui.custom.view.Red45AngleWithTextImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp" />
 
 </LinearLayout>

@@ -19,8 +19,8 @@
             android:name=".ChatMainActivity"
             android:launchMode="singleInstance" />
         <activity android:name=".UserInfoActivity" />
-        <activity android:name=".custom.activity.CustomViewActivity" />
-
+        <activity android:name=".ui.custom.activity.CustomViewActivity" />
+        <activity android:name=".ui.UserActivity" />
     </application>
 
 </manifest>

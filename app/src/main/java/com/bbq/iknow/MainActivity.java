@@ -9,7 +9,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import com.bbq.iknow.custom.activity.CustomViewActivity;
+import com.bbq.iknow.ui.UserActivity;
+import com.bbq.iknow.ui.custom.activity.CustomViewActivity;
 
 import java.util.ArrayList;
 
@@ -29,11 +30,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button btModel = (Button) findViewById(R.id.bt_model);
         Button btGetActivity = (Button) findViewById(R.id.bt_get_activity);
         Button btCustomView = (Button) findViewById(R.id.bt_custom_view);
+        Button btMVp= (Button) findViewById(R.id.bt_mvp_user);
 
 
         btModel.setOnClickListener(this);
         btGetActivity.setOnClickListener(this);
         btCustomView.setOnClickListener(this);
+        btMVp.setOnClickListener(this);
     }
 
     @Override
@@ -48,6 +51,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         }else  if (id == R.id.bt_custom_view) {
             Intent intent = new Intent(this, CustomViewActivity.class);
+            startActivity(intent);
+        }else  if (id == R.id.bt_mvp_user) {
+            Intent intent = new Intent(this, UserActivity.class);
             startActivity(intent);
         }
     }

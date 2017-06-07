@@ -1,4 +1,4 @@
-package com.bbq.iknow.custom.view;
+package com.bbq.iknow.ui.custom.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;

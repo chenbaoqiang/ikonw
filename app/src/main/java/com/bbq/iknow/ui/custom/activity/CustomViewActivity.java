@@ -1,4 +1,4 @@
-package com.bbq.iknow.custom.activity;
+package com.bbq.iknow.ui.custom.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.bbq.iknow.R;
-import com.bbq.iknow.custom.view.CustomCircleView;
+import com.bbq.iknow.ui.custom.view.CustomCircleView;
 
 import java.util.ArrayList;
 import java.util.List;
