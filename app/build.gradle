@@ -19,9 +19,14 @@ android {
     }
 }
 
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile project(':androidbase')
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:25.2.0'
+    compile 'android.feinno:androidbasedebug:1.0.3-SNAPSHOT@jar'
 }

@@ -1,5 +1,8 @@
 apply plugin: 'com.android.library'
 
+// This is the library version used when deploying the artifact
+
+
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
@@ -10,7 +13,6 @@ android {
         versionCode 1
         versionName "1.0"
     }
-    useLibrary 'org.apache.http.legacy'
     lintOptions {
         abortOnError false
     }
@@ -40,8 +42,106 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:support-v4:25.2.0'
     compile 'com.google.code.gson:gson:2.7'
 }
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+//添加这两行
+apply plugin: 'maven'
+apply plugin: 'signing'
+
+//判断版本号是不是release
+def isReleaseBuild() {
+    return VERSION_NAME.contains("SNAPSHOT") == false
+}
+
+def uploadUrl
+if(isReleaseBuild()){
+    uploadUrl = MAVEN_URL
+}else{
+    uploadUrl = MAVEN_SNAPSHOT_URL
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url:uploadUrl) {
+                authentication(userName: NEXUS_USERNAME, password: NEXUS_PASSWORD)
+            }
+
+            pom.project {
+                name POM_ARTIFACT_ID
+                version VERSION_NAME
+                artifactId POM_ARTIFACT_ID
+                groupId GROUP_ID
+                packaging POM_PACKAGING
+                description DESCRIPTION
+
+                licenses {
+                    license {
+                        name POM_LICENCE_NAME
+                        url POM_LICENCE_URL
+                    }
+                }
+
+            }
+        }
+    }
+
+
+    task androidJavadocs(type: Javadoc) {
+        source = android.sourceSets.main.java.srcDirs
+        classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+        options.encoding = "UTF-8"
+    }
+
+    task androidJavadocsJar(type: Jar, dependsOn: androidJavadocs) {
+        classifier = 'javadoc'
+        from androidJavadocs.destinationDir
+    }
+
+    task androidSourcesJar(type: Jar) {
+        //如果添加上它，不知道怎么下jar
+//        classifier = 'sources'
+        from android.sourceSets.main.java.sourceFiles
+    }
+
+    artifacts {
+        archives androidSourcesJar
+        //上传javadoc 没搞定，上传也没卵用
+//        archives androidJavadocsJar
+    }
+}
+
+//用于生成pom.xml,只是检测看看写的对不对，只要上面写的对，无卵用，在Gradle  projects下，当前module下Tasks/other/createpom,点击就会生成pom.xml
+task createPom << {
+    pom {
+        project {
+            name POM_ARTIFACT_ID
+            version VERSION_NAME
+            artifactId POM_ARTIFACT_ID
+            groupId GROUP_ID
+            packaging POM_PACKAGING
+            description DESCRIPTION
+
+            inceptionYear '2008'
+            licenses {
+                license {
+                    name 'The Apache Software License, Version 2.0'
+                    url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    distribution 'repo'
+                }
+            }
+        }
+    }.writeTo("pom.xml")
+}
+
+
+
+
+
